@@ -1,0 +1,56 @@
+Ideia: Linguagem baseada fortemente em funcões
+loops e condicionais só trabalham com chamadas de função ou STATEMENT simples,
+sem BLOCK próprio
+
+=======================================================================
+
+BLOCK = { STATEMENT };
+STATEMENT = ( λ | ASSIGNMENT | PRINT | FUNCTION | IF | LOOP), "\n" ;
+ASSIGNMENT ="STA", IDENTIFIER, EXPRESSION ;
+PRINT = "LOG",  EXPRESSION ;
+
+FUNCTION = FUNCTION_DEF | FUNCTION_CALL ;
+FUNCTION_DEF = "FUNC" , FUNCTION_ID, BLOCK , "RET" ;
+FUNCTION_CALL = "JMP" , FUNCTION_ID;
+FUNCTION_ID = IDENTIFIER ,"(" , [PAR_LIST] ,")";
+PAR_LIST = IDENTIFIER, { IDENTIFIER } ;
+
+
+IF ="CEQ" CONDITION , "\n" , STATEMENT , [ELSE],"\n", "END";
+ELSE ="ELSE" IF | STATEMENT ;
+LOOP = "WHL", CONDITION , "\n", STATEMENT,"\n", "END";
+
+
+CONDITION = EXPRESSION , COMPARADOR , EXPRESSION;
+EXPRESSION = TERM, { ("+" | "-"), TERM } ;
+TERM = FACTOR, { ("*" | "/"), FACTOR } ;
+FACTOR = (("+" | "-"), FACTOR) | NUMBER | "(", EXPRESSION, ")" | IDENTIFIER ;
+IDENTIFIER = LETTER, { LETTER | DIGIT | "_" } ;
+NUMBER = DIGIT, { DIGIT } ;
+COMPARADOR = '==' | '<' | '>' | '<=' | '>='
+LETTER = ( a | ... | z | A | ... | Z ) ;
+DIGIT = ( 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 ) ;
+
+
+#exemplos de STATEMENTs
+LOG 1+2*(3/4)
+STA VAR1 567
+
+#exemplo de criação de função
+FUNC TESTE (A, B, C)
+STA A B+ C
+LOG A
+RET
+
+#exemplo de if/else
+CEQ VAR1 == 10
+TESTE SALVA 2 3
+ELSE 
+TESTE SALVA 8 9
+END
+
+#exemplo de LOOP
+STA SALVA 0
+WHL VAR1 <= 10
+STA SALVA SALVA+1
+END
