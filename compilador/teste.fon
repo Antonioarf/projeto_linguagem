@@ -1,0 +1,44 @@
+FUNC TESTE, A, B, C
+STA RET,  B+C*(2*2)
+END
+
+
+STA K, 0
+STA B, 10
+STA K, 5+B
+WHL K>0
+STA K, K-1
+END
+LDI VAR
+CEQ VAR==0
+JMP TESTE, 1, 2, 3
+ELSE 
+JMP TESTE, 4, 5, 6
+END
+
+STA A, RET
+LOG A
+
+
+#exemplos de STATEMENTs
+LOG 1+2*(3/4)
+STA VAR1 567
+
+#exemplo de criação de função
+FUNC TESTE (A, B, C)
+STA A B+ C
+LOG A
+RET
+
+#exemplo de if/else
+CEQ VAR1 == 10
+TESTE SALVA 2 3
+ELSE 
+TESTE SALVA 8 9
+END
+
+#exemplo de LOOP
+STA SALVA 0
+WHL VAR1 <= 10
+STA SALVA SALVA+1
+END
