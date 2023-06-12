@@ -1,0 +1,15 @@
+STA  x, 5
+LOG x + 10
+WHL x < 100
+    LOG x
+    STA x, x + 1
+END
+FUNC add, a, b
+    STA c, a + b
+    LOG c
+END
+CEQ x == 10
+    LOG "x is equal to 10"
+ELSE
+    LOG "x is not equal to 10"
+END

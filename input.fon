@@ -1,9 +1,0 @@
-STA X 10+5/2-1
-LOG X
-CEQ X >= 10
-LOG X+1
-ELSE
-LOG X-1
-WHL X < 20
-STA X X+2
-LOG X

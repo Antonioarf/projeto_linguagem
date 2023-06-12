@@ -54,38 +54,37 @@ extern int yydebug;
     YYEOF = 0,                     /* "end of file"  */
     YYerror = 256,                 /* error  */
     YYUNDEF = 257,                 /* "invalid token"  */
-    PRINT = 258,                   /* PRINT  */
-    ASSIGNMENT = 259,              /* ASSIGNMENT  */
-    FUNCTION = 260,                /* FUNCTION  */
-    IF = 261,                      /* IF  */
-    ELSE = 262,                    /* ELSE  */
-    LOOP = 263,                    /* LOOP  */
-    FUNCTION_RETURN = 264,         /* FUNCTION_RETURN  */
-    IDENTIFIER = 265,              /* IDENTIFIER  */
-    NUMBER = 266,                  /* NUMBER  */
-    EQUAL = 267,                   /* EQUAL  */
-    LESS_THAN = 268,               /* LESS_THAN  */
-    GREATER_THAN = 269,            /* GREATER_THAN  */
-    LESS_THAN_OR_EQUAL_TO = 270,   /* LESS_THAN_OR_EQUAL_TO  */
-    GREATER_THAN_OR_EQUAL_TO = 271, /* GREATER_THAN_OR_EQUAL_TO  */
-    UNKNOWN = 272                  /* UNKNOWN  */
+    STA_id = 258,                  /* STA_id  */
+    LOG_id = 259,                  /* LOG_id  */
+    FUNC_id = 260,                 /* FUNC_id  */
+    JMP_id = 261,                  /* JMP_id  */
+    CEQ_id = 262,                  /* CEQ_id  */
+    WHL_id = 263,                  /* WHL_id  */
+    END_id = 264,                  /* END_id  */
+    EQ_id = 265,                   /* EQ_id  */
+    LT_id = 266,                   /* LT_id  */
+    GT_id = 267,                   /* GT_id  */
+    ELSE_id = 268,                 /* ELSE_id  */
+    COMMA = 269,                   /* COMMA  */
+    AND = 270,                     /* AND  */
+    OR = 271,                      /* OR  */
+    NOT = 272,                     /* NOT  */
+    PLUS = 273,                    /* PLUS  */
+    MINUS = 274,                   /* MINUS  */
+    TIMES = 275,                   /* TIMES  */
+    DIVIDE = 276,                  /* DIVIDE  */
+    LPAREN = 277,                  /* LPAREN  */
+    RPAREN = 278,                  /* RPAREN  */
+    token_type = 279,              /* token_type  */
+    NUMBER = 280,                  /* NUMBER  */
+    IDENTIFIER = 281               /* IDENTIFIER  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-union YYSTYPE
-{
-#line 8 "grammar.y"
-
-    char* str;
-    double num;
-
-#line 86 "grammar.tab.h"
-
-};
-typedef union YYSTYPE YYSTYPE;
+typedef int YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif

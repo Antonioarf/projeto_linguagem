@@ -1,27 +1,26 @@
 BLOCK = { STATEMENT };
-STATEMENT = ( λ | ASSIGNMENT | PRINT | FUNCTION | IF | LOOP), "\n" ;
-ASSIGNMENT ="STA", IDENTIFIER, EXPRESSION ;
+STATEMENT = ( λ | ASSIGNMENT | PRINT | FUNCTION_DEF | FUNCTION_CALL | IF | LOOP), "\n" ;
+ASSIGNMENT ="STA", IDENTIFIER, ",", EXPRESSION ;
 PRINT = "LOG",  EXPRESSION ;
 
-FUNCTION = FUNCTION_DEF | FUNCTION_CALL ;
-FUNCTION_DEF = "FUNC" , FUNCTION_ID, BLOCK , "RET" ;
+FUNCTION_DEF = "FUNC" , FUNCTION_ID, "\n", BLOCK , "END" ;
 FUNCTION_CALL = "JMP" , FUNCTION_ID;
-FUNCTION_ID = IDENTIFIER ,"(" , [PAR_LIST] ,")";
-PAR_LIST = IDENTIFIER, { IDENTIFIER } ;
+FUNCTION_ID = IDENTIFIER, ["," , PAR_LIST];
+PAR_LIST = IDENTIFIER, { ",", IDENTIFIER } ;
 
 
-IF ="CEQ" CONDITION , "\n" , STATEMENT , [ELSE],"\n", "END";
-ELSE ="ELSE" IF | STATEMENT ;
-LOOP = "WHL", CONDITION , "\n", STATEMENT,"\n", "END";
+IF ="CEQ", RElEXP , "\n" , BLOCK , [ELSE],"\n", "END";
+ELSE ="ELSE","\n" , BLOCK ;
+LOOP = "WHL", RElEXP , "\n", BLOCK,"\n", "END";
 
 
-CONDITION = EXPRESSION , COMPARADOR , EXPRESSION;
-EXPRESSION = TERM, { ("+" | "-"), TERM } ;
-TERM = FACTOR, { ("*" | "/"), FACTOR } ;
-FACTOR = (("+" | "-"), FACTOR) | NUMBER | "(", EXPRESSION, ")" | IDENTIFIER ;
+RElEXP = EXPRESSION , [ ('==' | '<' | '>'), TERM ];
+EXPRESSION = TERM, { ("+" | "-" | "||" ), TERM } ;
+TERM = FACTOR, { ("*" | "/" | "&&"), FACTOR } ;
+FACTOR = (("+" | "-" | "!"), FACTOR) | NUMBER | "(", EXPRESSION, ")" | IDENTIFIER ;
+
 IDENTIFIER = LETTER, { LETTER | DIGIT | "_" } ;
 NUMBER = DIGIT, { DIGIT } ;
-COMPARADOR = '==' | '<' | '>' | '<=' | '>='
 LETTER = ( a | ... | z | A | ... | Z ) ;
 DIGIT = ( 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 ) ;
 
