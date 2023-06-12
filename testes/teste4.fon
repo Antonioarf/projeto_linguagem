@@ -1,0 +1,6 @@
+STA x, 5
+CEQ x == 10
+    LOG 10
+ELSE
+    LOG 0
+END
