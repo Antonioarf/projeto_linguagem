@@ -14,7 +14,7 @@ void yyerror(const char* s) {
 
 %}
 
-%token STA_id LOG_id FUNC_id JMP_id CEQ_id WHL_id END_id EQ_id LT_id GT_id ELSE_id COMMA AND OR NOT PLUS MINUS TIMES DIVIDE LPAREN RPAREN
+%token STA_id LOG_id FUNC_id JMP_id CEQ_id WHL_id END_id EQ_id LT_id GT_id ELSE_id COMMA AND OR NOT PLUS MINUS TIMES DIVIDE LPAREN RPAREN NEWLINE
 token_type NUMBER IDENTIFIER
 
 %%
@@ -30,21 +30,23 @@ statement_list : statement
                ;
 
 
-statement:  ASSIGNMENT { printf("Assignment\n"); }
-    | PRINT { printf("Print\n"); }
-    | FUNCTION_DEF { printf("Function Definition\n"); }
-    | FUNCTION_CALL { printf("Function Call\n"); }
-    | IF { printf("If\n"); }
-    | LOOP { printf("Loop\n"); }
+statement:  ASSIGNMENT
+    | PRINT
+    | FUNCTION_DEF
+    | FUNCTION_CALL
+    | IF
+    | LOOP
+    | NEWLINE
     ;
 
-ASSIGNMENT : STA_id  IDENTIFIER COMMA expression
+ASSIGNMENT : STA_id IDENTIFIER COMMA expression
+
            ;
 
 PRINT : LOG_id expression
       ;
 
-FUNCTION_DEF : FUNC_id FUNCTION_ID '\n' BLOCK END_id
+FUNCTION_DEF : FUNC_id FUNCTION_ID NEWLINE BLOCK END_id
              ;
 
 FUNCTION_CALL : JMP_id FUNCTION_ID
@@ -58,14 +60,14 @@ par_list : IDENTIFIER
          | par_list COMMA IDENTIFIER
          ;
 
-IF : CEQ_id rel_expression '\n' BLOCK ELSE '\n' END_id
-   | CEQ_id rel_expression '\n' BLOCK '\n' END_id
+IF : CEQ_id rel_expression NEWLINE BLOCK ELSE END_id
+   | CEQ_id rel_expression NEWLINE BLOCK END_id
    ;
 
-ELSE : ELSE_id '\n' BLOCK
+ELSE : ELSE_id NEWLINE BLOCK
      ;
 
-LOOP : WHL_id rel_expression '\n' BLOCK '\n' END_id
+LOOP : WHL_id rel_expression NEWLINE BLOCK END_id
      ;
 
 rel_expression : expression

@@ -75,9 +75,10 @@ extern int yydebug;
     DIVIDE = 276,                  /* DIVIDE  */
     LPAREN = 277,                  /* LPAREN  */
     RPAREN = 278,                  /* RPAREN  */
-    token_type = 279,              /* token_type  */
-    NUMBER = 280,                  /* NUMBER  */
-    IDENTIFIER = 281               /* IDENTIFIER  */
+    NEWLINE = 279,                 /* NEWLINE  */
+    token_type = 280,              /* token_type  */
+    NUMBER = 281,                  /* NUMBER  */
+    IDENTIFIER = 282               /* IDENTIFIER  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif

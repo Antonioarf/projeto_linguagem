@@ -351,8 +351,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 26
-#define YY_END_OF_BUFFER 27
+#define YY_NUM_RULES 27
+#define YY_END_OF_BUFFER 28
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -362,11 +362,11 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[53] =
     {   0,
-        0,    0,   27,   25,   24,   24,   20,   25,   12,   13,
-       16,   14,   21,   15,   17,   22,   10,   25,   11,   23,
-       23,   23,   23,   23,   23,   23,   23,   25,   18,   22,
-        9,   23,   23,   23,   23,   23,   23,   23,   23,   23,
-       19,    5,   23,    8,   23,    4,    2,    1,    7,    6,
+        0,    0,   28,   26,   25,   22,   20,   26,   12,   13,
+       16,   14,   21,   15,   17,   23,   10,   26,   11,   24,
+       24,   24,   24,   24,   24,   24,   24,   26,   18,   23,
+        9,   24,   24,   24,   24,   24,   24,   24,   24,   24,
+       19,    5,   24,    8,   24,    4,    2,    1,    7,    6,
         3,    0
     } ;
 
@@ -863,32 +863,37 @@ YY_RULE_SETUP
 { printf("COMMA\n"); return COMMA; }
 	YY_BREAK
 case 22:
+/* rule 22 can match eol */
 YY_RULE_SETUP
-#line 34 "lexer.l"
-{ yylval = atoi(yytext); printf("NUM\n") ; return NUMBER; }
+#line 33 "lexer.l"
+{ printf("NEWLINE\n"); return NEWLINE; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
 #line 35 "lexer.l"
-{ yylval = strdup(yytext);printf("VAR\n") ;  return IDENTIFIER; }
+{ yylval = atoi(yytext); printf("NUM\n") ; return NUMBER; }
 	YY_BREAK
 case 24:
-/* rule 24 can match eol */
 YY_RULE_SETUP
-#line 37 "lexer.l"
-; /* Skip whitespace */
+#line 36 "lexer.l"
+{ yylval = strdup(yytext);printf("VAR\n") ;  return IDENTIFIER; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 39 "lexer.l"
-{ fprintf(stderr, "Invalid token: %s\n", yytext); }
+#line 38 "lexer.l"
+; /* Skip whitespace */
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 41 "lexer.l"
+#line 40 "lexer.l"
+{ fprintf(stderr, "Invalid token: %s\n", yytext); }
+	YY_BREAK
+case 27:
+YY_RULE_SETUP
+#line 42 "lexer.l"
 ECHO;
 	YY_BREAK
-#line 892 "lex.yy.c"
+#line 897 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1893,7 +1898,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 41 "lexer.l"
+#line 42 "lexer.l"
 
 
 int yywrap() {

@@ -24,8 +24,4 @@ int main(int argc, char** argv) {
 }
 
 
-// flex lexer.l
-// gcc lex.yy.c -o lexer
-// bison -d grammar.y
-// gcc grammar.tab.c -o parser
 // flex lexer.l && bison -d grammar.y && gcc main.c lex.yy.c grammar.tab.c -o main

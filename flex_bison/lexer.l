@@ -30,11 +30,12 @@
 "!"                  { printf("NOT\n"); return NOT; }
 
 ","                  { printf("COMMA\n"); return COMMA; }
+[\n]                 { printf("NEWLINE\n"); return NEWLINE; }
 
 [0-9]+               { yylval = atoi(yytext); printf("NUM\n") ; return NUMBER; }
 [a-zA-Z][a-zA-Z0-9_]* { yylval = strdup(yytext);printf("VAR\n") ;  return IDENTIFIER; }
 
-[ \t\n]              ; /* Skip whitespace */
+[ \t]              ; /* Skip whitespace */
 
 .                    { fprintf(stderr, "Invalid token: %s\n", yytext); }
 
